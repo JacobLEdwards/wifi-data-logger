@@ -86,15 +86,12 @@ void loop() {
     // Setup Request
     HTTPClient http;
  
-    http.begin("192.168.1.140", 8080);
+    http.begin("192.168.1.165", 8080);
     http.addHeader("Content-Type", "application/json");
 
     // Send Request
     int httpCode = http.POST(buffer);
-    String payload = http.getString();
- 
     Serial.println(httpCode);
-    Serial.println(payload);
  
     http.end();
  
