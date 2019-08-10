@@ -29,3 +29,18 @@ While testing over serial, it seems the voltage supplied by 2 AA NiMH batteries 
 Different battery options will be explored.
 
 A program was made to post the current temperature and humidity to a local server, which logs the data to a file. This is next to be tested, along with the deep sleep mode to monitor current usage while sleeping and starting up.
+
+### Testing with 18650 Cells.
+
+Testing with 18650 cells gave a huge improvement to life and stability. While testing, I am yet to use up the charge of 2 18650s.
+
+These are somewhat large, so some ~3.7v nominal AA-size Li-ion batteries would be good to test.
+
+Deep sleep, and posting readings to a python server were both tested successfully, although some stability issues were experienced.
+These have been solved by adding a relatively large (470uF) capacitor across Vcc and GND of the ESP. This fixes most problems.
+
+A voltage divider circuit was used to step the battery voltage down to a readable range (0-1v) for the ESP's ADC. This allows monitoring of the battery voltage, and this will allow the ESP to stay in deep sleep mode once the batteries run low, and hopefully they can be replaced before any damage is caused by the very low current while in sleep.
+
+This also seems to have fixed issues reading signals reliably.
+
+While in operation, the system draws 200-500mA. In deep sleep this drops to ~20uA. This could potentially be improved with a LDO linear regulator. The use of a proper circuit board will improve efficiency and stability too, once the project leaves experimental phase.
