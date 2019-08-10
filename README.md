@@ -24,4 +24,8 @@ For the final logger, a DHT22 temperature/humidity sensor will be used, since it
 
 While testing, a DHT11 was used, since I already had one. This may affect current draw while logging somewhat, so this should be considered.
 
-A program was made to post the current 
+While testing over serial, it seems the voltage supplied by 2 AA NiMH batteries is not enough, and the reads from the DHT11 either fail or return 0.
+
+Different battery options will be explored.
+
+A program was made to post the current temperature and humidity to a local server, which logs the data to a file. This is next to be tested, along with the deep sleep mode to monitor current usage while sleeping and starting up.
