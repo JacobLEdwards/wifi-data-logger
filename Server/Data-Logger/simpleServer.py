@@ -42,12 +42,12 @@ class ServerHandler(server.SimpleHTTPRequestHandler):
     def do_POST(self):
         # Log Receipt
         timestamp = datetime.datetime.now().strftime('%Y_%m_%d %H:%M:%S')
-        log('\nData recieved %s.' % timestamp)
+        print('\nData recieved %s.' % timestamp)
         
         # Get data
         content_length = int(self.headers['Content-Length'])
         post_data = json.loads(self.rfile.read(content_length))
-        log('data: %s' % post_data)
+        print('data: %s' % post_data)
 
         # Add timestamp.
         post_data['timestamp'] = timestamp
@@ -64,5 +64,5 @@ class ServerHandler(server.SimpleHTTPRequestHandler):
 Handler = ServerHandler
 
 with TCPServer(("0.0.0.0", PORT_NUM), Handler) as s:
-    log('Server started at %s:%d' % (gethostbyname(gethostname()), PORT_NUM))
+    print('Server started at %s:%d' % (gethostbyname(gethostname()), PORT_NUM))
     s.serve_forever()
